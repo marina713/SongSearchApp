@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Button /> renders correctly with custom text 1`] = `
+<Container
+  onPress={[Function]}
+>
+  <ButtonText>
+    Some other text
+  </ButtonText>
+</Container>
+`;
+
+exports[`<Button /> renders correctly with default props 1`] = `
+<Container
+  onPress={[Function]}
+>
+  <ButtonText>
+    Hello Button
+  </ButtonText>
+</Container>
+`;

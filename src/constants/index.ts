@@ -1,1 +1,1 @@
-export const API_ENDPOINT = 'https://quotes.rest/qod';
+export const API_ENDPOINT = 'https://itunes.apple.com/search';

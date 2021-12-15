@@ -1,5 +1,5 @@
 import configureStore from 'redux-mock-store';
-import {GET_QUOTE, UPDATE_QUOTE} from '../constants';
+import {GET_SONGS, UPDATE_SONGS} from '../constants';
 
 import * as actions from '../actions';
 
@@ -12,39 +12,39 @@ const defaultParams = {
   payload: undefined,
 };
 
-describe('Quote actions', () => {
+describe('Songs actions', () => {
   beforeEach(() => {
     store.clearActions();
   });
 
-  describe('getQuote', () => {
+  describe('getSongs', () => {
     test('dispatches the correct action and payload', () => {
       const onSuccess = console.log;
       const onError = console.log;
       const expectedActions = [
         {
           ...defaultParams,
-          type: GET_QUOTE,
+          type: GET_SONGS,
           payload: {onSuccess, onError},
         },
       ];
 
-      store.dispatch(actions.getQuote({onSuccess, onError}));
+      store.dispatch(actions.getSongs({onSuccess, onError}));
       expect(store.getActions()).toEqual(expectedActions);
     });
   });
 
-  describe('updateQuote', () => {
+  describe('updateSong', () => {
     test('dispatches the correct action and payload', () => {
       const expectedActions = [
         {
           ...defaultParams,
-          type: UPDATE_QUOTE,
-          payload: 'New quote',
+          type: UPDATE_SONGS,
+          payload: 'New song query',
         },
       ];
 
-      store.dispatch(actions.updateQuote('New quote'));
+      store.dispatch(actions.updateSongs('Nirvana'));
       expect(store.getActions()).toEqual(expectedActions);
     });
   });

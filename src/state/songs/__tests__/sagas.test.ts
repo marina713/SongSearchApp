@@ -1,15 +1,15 @@
 import {runSaga} from 'redux-saga';
 import {takeLatest} from 'redux-saga/effects';
-import {watchGetQuote, getQuoteSaga} from '../sagas';
-import {GET_QUOTE} from '../constants';
-import {updateQuote} from '../actions';
+import {watchGetSongs, getSongsSaga} from '../sagas';
+import {GET_SONGS} from '../constants';
+import {updateSongs} from '../actions';
 import * as api from '../api';
 
-describe('watchGetQuote', () => {
-  const genObject = watchGetQuote();
+describe('watchGetSongs', () => {
+  const genObject = watchGetSongs();
 
-  it('should wait for every GET_QUOTE action and call getQuoteSaga', () => {
-    expect(genObject.next().value).toEqual(takeLatest(GET_QUOTE, getQuoteSaga));
+  it('should wait for every GET_SONGS action and call getSongsSaga', () => {
+    expect(genObject.next().value).toEqual(takeLatest(GET_SONGS, getSongsSaga));
   });
 
   it('should be done on next iteration', () => {
@@ -25,17 +25,17 @@ const getMockAction = (payload: any) => ({
 const mockOnSuccess = jest.fn();
 const mockOnError = jest.fn();
 
-describe('getQuoteSaga', () => {
+describe('getSongsSaga', () => {
   afterEach(() => {
     jest.clearAllMocks();
   });
 
   it('should call api and dispatch success action', async () => {
     // @ts-ignore
-    const requestQuote = jest.spyOn(api, 'getQuote').mockImplementation(() =>
+    const requestSongs = jest.spyOn(api, 'getSongs').mockImplementation(() =>
       Promise.resolve({
         json: () => ({
-          contents: {quotes: [{quote: 'hello'}]},
+          contents: {songs: [{term: 'nirvana'}]},
         }),
       }),
     );
@@ -44,20 +44,20 @@ describe('getQuoteSaga', () => {
       {
         dispatch: (action: any) => dispatched.push(action),
       },
-      getQuoteSaga,
+      getSongsSaga,
       getMockAction({onSuccess: mockOnSuccess, onError: mockOnError}),
     );
 
-    expect(requestQuote).toHaveBeenCalledTimes(1);
+    expect(requestSongs).toHaveBeenCalledTimes(1);
     expect(mockOnSuccess).toHaveBeenCalledTimes(1);
     expect(mockOnError).toHaveBeenCalledTimes(0);
-    expect(dispatched).toEqual([updateQuote('hello')]);
-    requestQuote.mockClear();
+    expect(dispatched).toEqual([updateSongs('nirvana')]);
+    requestSongs.mockClear();
   });
 
   it('should call api and call error callback', async () => {
     // @ts-ignore
-    const requestQuote = jest.spyOn(api, 'getQuote').mockImplementation(() =>
+    const requestSongs = jest.spyOn(api, 'getSongs').mockImplementation(() =>
       Promise.resolve({
         json: () => ({}),
       }),
@@ -67,13 +67,13 @@ describe('getQuoteSaga', () => {
       {
         dispatch: (action: any) => dispatched.push(action),
       },
-      getQuoteSaga,
+      getSongsSaga,
       getMockAction({onSuccess: mockOnSuccess, onError: mockOnError}),
     );
 
-    expect(requestQuote).toHaveBeenCalledTimes(1);
+    expect(requestSongs).toHaveBeenCalledTimes(1);
     expect(mockOnSuccess).toHaveBeenCalledTimes(0);
     expect(mockOnError).toHaveBeenCalledTimes(1);
-    requestQuote.mockClear();
+    requestSongs.mockClear();
   });
 });

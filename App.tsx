@@ -21,7 +21,7 @@ const App = () => {
       <Provider store={store}>
         <ThemeProvider theme={isDarkMode ? darkTheme.colors : lightTheme.colors}>
           <Stack.Navigator>
-            <Stack.Screen name="Home" component={Home} />
+            <Stack.Screen name="Home" component={Home} options={{ headerShown: false }} />
             <Stack.Screen name="Player" component={Player} />
           </Stack.Navigator>
         </ThemeProvider>

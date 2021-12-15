@@ -10,15 +10,19 @@ export type Props = {
 };
 
 export const SongPreview = React.memo(({ song, onSongPress }: Props) => {
-    const price = song.currency === 'USD' ? `$${song.trackPrice}` : `${song.trackPrice} ${song.currency}`;
+    const price = song.currency === 'USD' ? `$${song.trackPrice}` : `${song.trackPrice}${song.currency}`;
+    const formattedReleaseDate = song.releaseDate && formatDate(song.releaseDate);
+    const releaseDate = formattedReleaseDate ? `Released on ${formattedReleaseDate} · ` : '';
+    const formattedLength = song.trackTimeMillis && msToHMS(song.trackTimeMillis);
+    const length = formattedLength ? `Length ${formattedLength}` : '';
 
     return (
         <Container onPress={onSongPress}>
             <AlbumCover source={{ uri: song.artworkUrl100 }} />
-            <FlexCol onPress={onSongPress}>
+            <FlexCol>
                 <TrackName>{song.trackName}</TrackName>
                 <Title>{`${song.artistName} · ${song.primaryGenreName}`}</Title>
-                <SubTitle>{`Released on ${formatDate(song.releaseDate)} · Length ${msToHMS(song.trackTimeMillis)}`}</SubTitle>
+                <SubTitle>{`${releaseDate}${length}`}</SubTitle>
                 <FlexRow>
                     <ExtraInfoContainer>
                         <ExtraInfoText>{price}</ExtraInfoText>

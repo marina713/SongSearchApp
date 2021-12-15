@@ -1,4 +1,5 @@
 import styled from 'styled-components/native';
+import {ThemeColors} from '~/constants/colors';
 
 export const Container = styled.View`
   align-items: center;
@@ -6,9 +7,12 @@ export const Container = styled.View`
   justify-content: center;
 `;
 
-export const RowContainer = styled.View`
+export const RowContainer = styled.View<{theme: ThemeColors}>`
   flex-direction: row;
   justify-content: center;
+  background-color: ${({theme}) => theme.card};
+  border-radius: 50px;
+  padding: 5px 10px;
 `;
 
 export const PlayButton = styled.TouchableOpacity`

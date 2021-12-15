@@ -34,6 +34,7 @@ export const TrackName = styled.Text<{theme: ThemeColors}>`
   color: ${({theme}) => theme.title};
   font-weight: 600;
 `;
+
 export const AlbumCover = styled.Image`
   aspect-ratio: 1;
   width: 85px;
@@ -41,15 +42,17 @@ export const AlbumCover = styled.Image`
   margin: 5px 15px 5px 0;
 `;
 
-export const Title = styled.Text`
+export const Title = styled.Text<{theme: ThemeColors}>`
   font-size: 17px;
   color: ${({theme}) => theme.title};
   margin: 3px 0;
 `;
+
 export const ExtraInfoText = styled.Text<{theme: ThemeColors}>`
   font-size: 16px;
   color: ${({theme}) => theme.text};
 `;
+
 export const SubTitle = styled.Text<{theme: ThemeColors}>`
   font-size: 13px;
   color: ${({theme}) => theme.subtitle};

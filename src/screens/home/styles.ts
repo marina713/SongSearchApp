@@ -2,7 +2,7 @@ import styled from 'styled-components/native';
 import {ThemeColors} from '~/constants/colors';
 
 export const Container = styled.View`
-  padding: 15px;
+  padding: 50px 15px 10px;
 `;
 export const NotFoundContainer = styled.View`
   align-items: center;
@@ -24,7 +24,7 @@ export const FlatList = styled.FlatList`
 `;
 
 export const TextInput = styled.TextInput<{theme: ThemeColors}>`
-  height: 40px;
+  height: 45px;
   margin-top: 12px;
   border-width: 1px;
   border-radius: 5px;

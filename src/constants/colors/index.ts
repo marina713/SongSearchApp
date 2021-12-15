@@ -25,7 +25,7 @@ export const lightTheme: ThemeType = {
   colors: {
     primary: primaryGreen,
     background: primaryWhite,
-    card: 'rgb(255, 255, 255)',
+    card: primaryWhite,
     text: primaryLightGreen,
     border: primaryLight,
     notification: 'rgb(255, 69, 58)',
@@ -39,7 +39,7 @@ export const darkTheme: ThemeType = {
   colors: {
     primary: primaryWhite,
     background: primaryDark,
-    card: 'rgb(255, 255, 255)',
+    card: primaryLight,
     text: primaryLightGreen,
     border: primaryLightGreen,
     notification: 'rgb(255, 69, 58)',

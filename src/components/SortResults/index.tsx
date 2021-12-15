@@ -4,10 +4,9 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getSortBy } from '~/state/songs/selectors'
 
 import { Container, Title, SortItem, SortItemText, SortItemsContainer, SortIcon } from './styles';
-import { SortByType } from '~/state/songs/types';
 
 type SortItemComponentProps = {
-    sortBy: SortByType;
+    sortBy: string;
 }
 
 const SORT_BY = ['Duration', 'Genre', 'Price'];

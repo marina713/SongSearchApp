@@ -11,24 +11,29 @@ import { Song } from '~/state/songs/types';
 
 type Props = {
   onSubmitEditing: (text: string) => void;
+  onChange: () => void;
 };
 
 export const HomeComponent = React.memo(
-  ({ onSubmitEditing }: Props) => (
-    <Container>
-      <Title>Music search</Title>
-      <TextInput
-        onSubmitEditing={e => onSubmitEditing(e.nativeEvent.text)}
-        selectTextOnFocus
-        clearButtonMode="while-editing"
-        returnKeyType="search" />
-    </Container>
-  )
-);
+  ({ onSubmitEditing, onChange }: Props) => {
+
+    return (
+      <Container>
+        <Title>Music search</Title>
+        <TextInput
+          onSubmitEditing={e => onSubmitEditing(e.nativeEvent.text)}
+          selectTextOnFocus
+          onChange={onChange}
+          clearButtonMode="while-editing"
+          returnKeyType="search" />
+      </Container>
+    )
+  });
 
 export const Home = ({ navigation }: any) => {
   const dispatch = useDispatch();
   const [isLoading, setIsLoading] = React.useState(false);
+  const [isTyping, setIsTyping] = React.useState(false);
 
   const onSongPress = React.useCallback((trackId) => {
     navigation.navigate('Player');
@@ -41,13 +46,16 @@ export const Home = ({ navigation }: any) => {
   const onError = () => setIsLoading(false);
 
   const onSubmitEditing = (text: string) => {
-    setIsLoading(true)
-    dispatch(getSongsAction({ onSuccess, onError, term: text }))
+    setIsLoading(true);
+    dispatch(getSongsAction({ onSuccess, onError, term: text }));
+    setIsTyping(false);
   };
+
+  const onChange = () => setIsTyping(true);
 
   return (
     <>
-      <HomeComponent onSubmitEditing={onSubmitEditing} />
+      <HomeComponent onSubmitEditing={onSubmitEditing} onChange={onChange} />
       {isLoading ?
         <LottieView
           source={require('~/assets/lotties/music-loader.json')}
@@ -62,14 +70,14 @@ export const Home = ({ navigation }: any) => {
               renderItem={({ item }: { item: any }) =>
                 <SongPreview song={item} onSongPress={() => onSongPress(item.trackId)} />}
               keyExtractor={(item: any, index) => `${item.trackId}-${index}`} />
-          </> :
-          <NotFoundContainer>
-            <LottieView
-              source={require('~/assets/lotties/not-found.json')}
-              style={{ width: 250, alignSelf: 'center' }}
-              autoPlay />
-            <Subtitle> No music found, try again!</Subtitle>
-          </NotFoundContainer>
+          </> : isTyping ? null :
+            <NotFoundContainer>
+              <LottieView
+                source={require('~/assets/lotties/not-found.json')}
+                style={{ width: 250, alignSelf: 'center' }}
+                autoPlay />
+              <Subtitle> No music found, try again!</Subtitle>
+            </NotFoundContainer>
       }
     </>
   );

@@ -66,4 +66,5 @@ export interface SortBy {
 export interface SongsState {
   songs: Song[];
   sortBy: SortBy;
+  playingTrackId: number;
 }

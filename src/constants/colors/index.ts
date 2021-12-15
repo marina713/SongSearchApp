@@ -1,6 +1,7 @@
-const primaryGreen = '#264653';
+const primaryGreen = '#84a59d';
 const primaryLightGreen = '#2a9d8f';
-const primaryDarkGreen = '#023047';
+const primaryLight = '#94d2bd';
+const primaryDark = '#212f45';
 const primaryWhite = '#fffffc';
 
 export type ThemeColors = {
@@ -11,6 +12,7 @@ export type ThemeColors = {
   border: string;
   notification: string;
   title: string;
+  subtitle: string;
 };
 
 type ThemeType = {
@@ -25,9 +27,10 @@ export const lightTheme: ThemeType = {
     background: primaryWhite,
     card: 'rgb(255, 255, 255)',
     text: primaryLightGreen,
-    border: 'rgb(199, 199, 204)',
+    border: primaryLight,
     notification: 'rgb(255, 69, 58)',
-    title: primaryDarkGreen,
+    title: primaryDark,
+    subtitle: primaryGreen,
   },
 };
 
@@ -35,11 +38,12 @@ export const darkTheme: ThemeType = {
   dark: true,
   colors: {
     primary: primaryWhite,
-    background: primaryGreen,
+    background: primaryDark,
     card: 'rgb(255, 255, 255)',
     text: primaryLightGreen,
-    border: 'rgb(199, 199, 204)',
+    border: primaryLightGreen,
     notification: 'rgb(255, 69, 58)',
-    title: primaryLightGreen,
+    title: primaryLight,
+    subtitle: primaryLightGreen,
   },
 };

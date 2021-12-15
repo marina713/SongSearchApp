@@ -41,7 +41,7 @@ export const SortResults = () => (
     <Container>
         <Title>Sort by</Title>
         <SortItemsContainer>
-            {SORT_BY.map(item => <SortItemComponent sortBy={item} />)}
+            {SORT_BY.map(item => <SortItemComponent key={item} sortBy={item} />)}
         </SortItemsContainer>
     </Container>
 );

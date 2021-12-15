@@ -2,7 +2,7 @@ import {takeLatest, call, put, Effect} from 'redux-saga/effects';
 
 import {GET_SONGS} from './constants';
 import {updateSongs} from './actions';
-import {GetSongsAction} from './types';
+import {GetSongsAction, Song} from './types';
 import * as api from './api';
 
 /* GET SONGS */
@@ -13,7 +13,7 @@ export function* getSongsSaga({
     const response = yield call(api.getSongs, {term});
     const result = yield call(() => response.json());
 
-    const songs = result.results;
+    const songs = result.results.filter((result: Song) => !!result.trackId);
 
     if (songs && Array.isArray(songs)) {
       yield put(updateSongs(songs));

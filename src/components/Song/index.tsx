@@ -10,7 +10,7 @@ export type Props = {
 export const Song = React.memo(({ song }: Props) => (
     <Container>
         <TrackName>{song.trackName}</TrackName>
-        <AlbumCover source={{ uri: song.artworkUrl100 }} />
         <Title>{song.artistName}</Title>
+        <AlbumCover source={{ uri: song.artworkUrl100 }} />
     </Container>
 ));

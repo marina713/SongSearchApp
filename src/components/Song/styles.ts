@@ -6,8 +6,9 @@ export const Container = styled.View<{theme: ThemeColors}>`
   border-radius: 5px;
   border-color: ${({theme}) => theme.border};
   border-width: 1px;
-  padding: 5px 10px;
+  padding: 10px;
   align-items: center;
+  width: 90%;
 `;
 
 export const TrackName = styled.Text<{theme: ThemeColors}>`
@@ -15,6 +16,7 @@ export const TrackName = styled.Text<{theme: ThemeColors}>`
   color: ${({theme}) => theme.title};
   margin-bottom: 3px;
   font-weight: 600;
+  text-align: center;
 `;
 export const AlbumCover = styled.Image`
   aspect-ratio: 1;
@@ -25,4 +27,5 @@ export const AlbumCover = styled.Image`
 
 export const Title = styled.Text`
   font-size: 23px;
+  text-align: center;
 `;

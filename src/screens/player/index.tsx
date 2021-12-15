@@ -1,42 +1,40 @@
-import * as React from 'react';
-import { ActivityIndicator } from 'react-native';
+import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import TrackPlayer from 'react-native-track-player';
-import { getSongByTrackId, getSortedSongs } from '~/state/songs/selectors'
+import TrackPlayer, { Event, useTrackPlayerEvents, State, RepeatMode } from 'react-native-track-player';
+import { getCurrentSong, getNextTrackId, getTrackPlayerSongs, getPrevTrackId } from '~/state/songs/selectors'
 import { Song as SongType } from '~/state/songs/types';
 import { Container, PlayButton, RowContainer, PlayIcon } from './styles';
 import { Song } from '~/components/Song'
+import { setPlayingTrackId } from '~/state/songs/actions';
 
 type Props = {
-    isLoading: boolean;
     song: SongType;
+    isPlaying: boolean;
 };
 
-export const PlayerComponent = React.memo(({ isLoading, song }: Props) => {
-    if (!song.artworkUrl100 || !song.previewUrl) return null;
-    const songs = useSelector(getSortedSongs)
-    const start = async (song) => {
-        // Set up the player
-        await TrackPlayer.setupPlayer();
+// Subscribing to the following events inside PlayerComponent
+const events = [
+    Event.PlaybackState,
+    Event.PlaybackError
+];
 
-        // Add a track to the queue
-        await TrackPlayer.add({
-            id: song.trackId,
-            url: song.previewUrl,
-            title: song.trackName,
-            artist: song.artistName,
-            artwork: song.artworkUrl100
-        });
+export const PlayerComponent = React.memo(({ song, isPlaying }: Props) => {
+    const dispatch = useDispatch();
+    const nextTrackId = useSelector(getNextTrackId)
+    const prevTrackId = useSelector(getPrevTrackId)
 
-        await TrackPlayer.add(songs);
+    const playPauseSource = isPlaying ?
+        require('~/assets/images/pause.png') : require('~/assets/images/play.png');
+
+    const onPressPlayPause = () => isPlaying ? TrackPlayer.pause() : TrackPlayer.play();
+    const onPressBack = () => {
+        dispatch(setPlayingTrackId(prevTrackId))
+        TrackPlayer.skipToPrevious();
     };
-
-    React.useEffect(() => { start(song) }, [song])
-
-    const onPressPlay = () => TrackPlayer.play();
-    const onPressPause = () => TrackPlayer.pause();
-    const onPressBack = () => TrackPlayer.skipToPrevious();
-    const onPressNext = () => TrackPlayer.skipToNext();
+    const onPressNext = () => {
+        dispatch(setPlayingTrackId(nextTrackId))
+        TrackPlayer.skipToNext()
+    };
 
     return (
         <Container>
@@ -45,34 +43,47 @@ export const PlayerComponent = React.memo(({ isLoading, song }: Props) => {
                 <PlayButton onPress={onPressBack}>
                     <PlayIcon smaller source={require('~/assets/images/back.png')} />
                 </PlayButton>
-                <PlayButton onPress={onPressPlay}>
-                    <PlayIcon source={require('~/assets/images/play.png')} />
-                </PlayButton>
-                <PlayButton onPress={onPressPause}>
-                    <PlayIcon source={require('~/assets/images/pause.png')} />
+                <PlayButton onPress={onPressPlayPause}>
+                    <PlayIcon source={playPauseSource} />
                 </PlayButton>
                 <PlayButton onPress={onPressNext}>
                     <PlayIcon smaller source={require('~/assets/images/next.png')} />
                 </PlayButton>
             </RowContainer>
-            {/* {isLoading ? <ActivityIndicator /> : <Quote>{song.trackName}</Quote>} */}
         </Container>
     )
 });
 
-export const Player = ({ route }) => {
-    const { trackId } = route.params;
-    const song = useSelector(state => getSongByTrackId(state, trackId));
-    const [isLoading, setIsLoading] = React.useState(false);
-    const dispatch = useDispatch();
+export const Player = () => {
+    const { index: currentIndex, song: currentSong } = useSelector(getCurrentSong);
+    const songs = useSelector(getTrackPlayerSongs)
 
-    const onSuccess = () => setIsLoading(false);
-    const onError = () => setIsLoading(false);
+    const [playerState, setPlayerState] = useState(null)
 
-    React.useEffect(() => {
-        setIsLoading(true);
-    }, [dispatch]);
+    const start = async () => {
+        // Set up the player
+        await TrackPlayer.setupPlayer();
+        // Add songs to player
+        await TrackPlayer.add(songs);
+        // Set current song in queue to current index
+        await TrackPlayer.skip(currentIndex);
+        // Enable Queue repeat mode
+        await TrackPlayer.setRepeatMode(RepeatMode.Queue);
+    };
 
-    if (!song) return null;
-    return <PlayerComponent isLoading={isLoading} song={song} />;
+    useEffect(() => { start(); return () => TrackPlayer.destroy(); }, [])
+
+    useTrackPlayerEvents(events, (event) => {
+        if (event.type === Event.PlaybackError) {
+            console.warn('An error occured while playing the current track.');
+        }
+        if (event.type === Event.PlaybackState) {
+            setPlayerState(event.state);
+        }
+    });
+
+    const isPlaying = playerState === State.Playing;
+
+    if (!currentSong) return null;
+    return <PlayerComponent song={currentSong} isPlaying={isPlaying} />;
 };

@@ -2,9 +2,10 @@ import styled from 'styled-components/native';
 import {ThemeColors} from '~/constants/colors';
 
 export const Container = styled.View`
-  padding: 8px 10px;
-  flex-direction: column;
+  padding: 0px 15px;
+  flex-direction: row;
   justify-content: space-between;
+  align-items: center;
 `;
 export const SortItemsContainer = styled.View`
   flex-direction: row;
@@ -31,7 +32,7 @@ export const Title = styled.Text<{theme: ThemeColors}>`
   font-size: 22px;
   color: ${({theme}) => theme.title};
   margin-bottom: 3px;
-  font-weight: 400;
+  font-weight: 300;
 `;
 
 export const SortItemText = styled.Text<{

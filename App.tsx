@@ -15,7 +15,7 @@ const Stack = createNativeStackNavigator();
 
 type Props = {
   isDarkMode: boolean;
-}
+};
 
 export const AppComponent = ({ isDarkMode }: Props) => (
   <NavigationContainer theme={isDarkMode ? darkTheme : lightTheme}>
@@ -23,7 +23,11 @@ export const AppComponent = ({ isDarkMode }: Props) => (
       <ThemeProvider theme={isDarkMode ? darkTheme.colors : lightTheme.colors}>
         <SafeAreaProvider>
           <Stack.Navigator>
-            <Stack.Screen name="Home" component={Home} options={{ headerShown: false }} />
+            <Stack.Screen
+              name="Home"
+              component={Home}
+              options={{ headerShown: false }}
+            />
             <Stack.Screen name="Player" component={Player} />
           </Stack.Navigator>
         </SafeAreaProvider>
@@ -36,7 +40,7 @@ const App = () => {
   const colorScheme = useColorScheme();
   const isDarkMode = colorScheme === 'dark';
 
-  return <AppComponent isDarkMode={isDarkMode} />
+  return <AppComponent isDarkMode={isDarkMode} />;
 };
 
 export default App;

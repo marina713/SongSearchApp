@@ -1,8 +1,8 @@
-import {combineReducers} from 'redux';
+import { combineReducers } from 'redux';
 
-import {songs} from './songs';
+import { songs } from './songs';
 
-export const combinedReducer = combineReducers({songs});
+export const combinedReducer = combineReducers({ songs });
 
 export type RootState = ReturnType<typeof combinedReducer>;
 

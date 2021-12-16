@@ -1,11 +1,11 @@
-import {action} from 'typesafe-actions';
+import { action } from 'typesafe-actions';
 import {
   GET_SONGS,
   UPDATE_SONGS,
   SET_SORT_BY,
   SET_PLAYING_TRACK_ID,
 } from './constants';
-import {GetSongsPayload, Song, SortBy} from './types';
+import { GetSongsPayload, Song, SortBy } from './types';
 
 export const getSongs = (payload: GetSongsPayload) =>
   action(GET_SONGS, payload);

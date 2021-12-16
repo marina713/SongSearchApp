@@ -1,7 +1,7 @@
 import * as React from 'react';
 import renderer from 'react-test-renderer';
 
-import {Button, Props} from './';
+import { Button, Props } from './';
 
 jest.mock('./styles', () => ({
   Container: 'Container',

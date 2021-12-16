@@ -1,6 +1,6 @@
-import {createSelector} from 'reselect';
-import {RootState} from '../reducers';
-import {initialState, songKeyMap} from './constants';
+import { createSelector } from 'reselect';
+import { RootState } from '../reducers';
+import { initialState, songKeyMap } from './constants';
 
 export const getState = (state: RootState) => state.songs || initialState;
 
@@ -60,9 +60,9 @@ export const getTrackPlayerSongs = createSelector(getSortedSongs, songs =>
 export const getCurrentSong = createSelector(
   [getPlayingTrackId, getSortedSongs],
   (trackId, songs) => {
-    if (!trackId) return {index: 0, song: songs[0]};
+    if (!trackId) return { index: 0, song: songs[0] };
     const index = songs.findIndex(song => song.trackId === trackId);
-    return {index, song: songs[index]};
+    return { index, song: songs[index] };
   },
 );
 

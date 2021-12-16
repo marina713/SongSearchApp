@@ -5,7 +5,7 @@ export const SET_PLAYING_TRACK_ID = 'songs/SET_PLAYING_TRACK_ID';
 
 export const initialState = {
   songs: [],
-  sortBy: {type: '', order: ''},
+  sortBy: { type: '', order: '' },
   playingTrackId: 0,
 };
 

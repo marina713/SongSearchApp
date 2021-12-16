@@ -1,5 +1,5 @@
 import styled from 'styled-components/native';
-import {ThemeColors} from '~/constants/colors';
+import { ThemeColors } from '~/constants/colors';
 
 export const Container = styled.View`
   padding: 0px 15px;
@@ -28,9 +28,9 @@ export const SortItem = styled.TouchableOpacity<{
   flex-direction: row;
 `;
 
-export const Title = styled.Text<{theme: ThemeColors}>`
+export const Title = styled.Text<{ theme: ThemeColors }>`
   font-size: 22px;
-  color: ${({theme}) => theme.title};
+  color: ${({ theme }) => theme.title};
   margin-bottom: 3px;
   font-weight: 300;
 `;

@@ -1,11 +1,11 @@
-import {text, number} from '@storybook/addon-knobs';
-import {storiesOf} from '@storybook/react-native';
+import { text, number } from '@storybook/addon-knobs';
+import { storiesOf } from '@storybook/react-native';
 import React from 'react';
 import styled from 'styled-components/native';
 
-import {SVGIcon} from '~/icons';
-import {generalIcons} from '~/constants/icons/general';
-import {CenterView} from '~/components/container/center-view';
+import { SVGIcon } from '~/icons';
+import { generalIcons } from '~/constants/icons/general';
+import { CenterView } from '~/components/container/center-view';
 
 const Container = styled.View`
   flex-direction: row;

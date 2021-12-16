@@ -1,10 +1,10 @@
 import * as React from 'react';
-import {generalIcons} from '~/constants/icons/general';
+import { generalIcons } from '~/constants/icons/general';
 
-import {Close} from './close';
-import {ChevronDown} from './chevron-down';
+import { Close } from './close';
+import { ChevronDown } from './chevron-down';
 
-import {OuterProps} from './types';
+import { OuterProps } from './types';
 
 export const map = {
   [generalIcons.CLOSE]: Close,

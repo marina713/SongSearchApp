@@ -1,8 +1,8 @@
-import {call, Effect} from 'redux-saga/effects';
+import { call, Effect } from 'redux-saga/effects';
 
-import {API_ENDPOINT} from '~/constants';
+import { API_ENDPOINT } from '~/constants';
 
-import {GetSongsApiPayload} from './types';
+import { GetSongsApiPayload } from './types';
 
 export function* getSongs({
   term = '',

@@ -1,8 +1,8 @@
-import {runSaga} from 'redux-saga';
-import {takeLatest} from 'redux-saga/effects';
-import {watchGetSongs, getSongsSaga} from '../sagas';
-import {GET_SONGS} from '../constants';
-import {updateSongs} from '../actions';
+import { runSaga } from 'redux-saga';
+import { takeLatest } from 'redux-saga/effects';
+import { watchGetSongs, getSongsSaga } from '../sagas';
+import { GET_SONGS } from '../constants';
+import { updateSongs } from '../actions';
 import * as api from '../api';
 
 describe('watchGetSongs', () => {
@@ -72,7 +72,7 @@ describe('getSongsSaga', () => {
         dispatch: (action: any) => dispatched.push(action),
       },
       getSongsSaga,
-      getMockAction({onSuccess: mockOnSuccess, onError: mockOnError}),
+      getMockAction({ onSuccess: mockOnSuccess, onError: mockOnError }),
     );
 
     expect(requestSongs).toHaveBeenCalledTimes(1);

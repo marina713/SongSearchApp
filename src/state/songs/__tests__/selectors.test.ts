@@ -9,7 +9,7 @@ import {
   getNextTrackId,
   getPrevTrackId,
 } from '../selectors';
-import {mockState, MOCK_SONGS} from '../mocks';
+import { mockState, MOCK_SONGS } from '../mocks';
 
 describe('Songs Selectors', () => {
   it('should return correct value of getSongs', () => {
@@ -52,11 +52,11 @@ describe('Songs Selectors', () => {
       MOCK_SONGS[2].trackId,
       MOCK_SONGS,
     );
-    expect(selectedSongs).toEqual({index: 2, song: mockState.songs[2]});
+    expect(selectedSongs).toEqual({ index: 2, song: mockState.songs[2] });
   });
   it('should return correct value of getNextTrackId', () => {
     const selectedSongs = getNextTrackId.resultFunc(
-      {index: 2, song: mockState.songs[2]},
+      { index: 2, song: mockState.songs[2] },
       MOCK_SONGS,
       MOCK_SONGS.length,
     );
@@ -64,7 +64,7 @@ describe('Songs Selectors', () => {
   });
   it('should return correct value of getNextTrackId when the current song is the last one', () => {
     const selectedSongs = getNextTrackId.resultFunc(
-      {index: 3, song: mockState.songs[3]},
+      { index: 3, song: mockState.songs[3] },
       MOCK_SONGS,
       MOCK_SONGS.length,
     );
@@ -72,7 +72,7 @@ describe('Songs Selectors', () => {
   });
   it('should return correct value of getPrevTrackId', () => {
     const selectedSongs = getPrevTrackId.resultFunc(
-      {index: 2, song: mockState.songs[2]},
+      { index: 2, song: mockState.songs[2] },
       MOCK_SONGS,
       MOCK_SONGS.length,
     );
@@ -80,7 +80,7 @@ describe('Songs Selectors', () => {
   });
   it('should return correct value of getPrevTrackId when is the current song is the first one', () => {
     const selectedSongs = getPrevTrackId.resultFunc(
-      {index: 0, song: mockState.songs[0]},
+      { index: 0, song: mockState.songs[0] },
       MOCK_SONGS,
       MOCK_SONGS.length,
     );

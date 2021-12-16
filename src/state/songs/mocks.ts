@@ -1,4 +1,4 @@
-export const MOCK_SORT_BY = {type: 'Duration', order: 'ASC'};
+export const MOCK_SORT_BY = { type: 'Duration', order: 'ASC' };
 export const MOCK_TRACK_ID = 1444896574;
 export const MOCK_SONGS = [
   {

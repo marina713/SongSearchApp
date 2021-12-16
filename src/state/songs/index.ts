@@ -4,7 +4,7 @@ import {
   SET_SORT_BY,
   SET_PLAYING_TRACK_ID,
 } from './constants';
-import {SongsState, Action} from './types';
+import { SongsState, Action } from './types';
 
 export const songs = (
   state: SongsState = initialState,
@@ -12,7 +12,7 @@ export const songs = (
 ): SongsState => {
   switch (action.type) {
     case UPDATE_SONGS: {
-      const {payload} = action;
+      const { payload } = action;
       return {
         ...state,
         songs: payload,
@@ -21,7 +21,7 @@ export const songs = (
     }
 
     case SET_SORT_BY: {
-      const {payload} = action;
+      const { payload } = action;
       return {
         ...state,
         sortBy: payload,
@@ -29,7 +29,7 @@ export const songs = (
     }
 
     case SET_PLAYING_TRACK_ID: {
-      const {payload} = action;
+      const { payload } = action;
       return {
         ...state,
         playingTrackId: payload,

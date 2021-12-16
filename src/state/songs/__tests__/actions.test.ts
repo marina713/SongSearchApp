@@ -5,7 +5,7 @@ import {
   SET_SORT_BY,
   SET_PLAYING_TRACK_ID,
 } from '../constants';
-import {MOCK_SONGS, MOCK_TRACK_ID, MOCK_SORT_BY} from '../mocks';
+import { MOCK_SONGS, MOCK_TRACK_ID, MOCK_SORT_BY } from '../mocks';
 
 import * as actions from '../actions';
 
@@ -31,11 +31,11 @@ describe('Songs actions', () => {
         {
           ...defaultParams,
           type: GET_SONGS,
-          payload: {onSuccess, onError, term: 'Sun'},
+          payload: { onSuccess, onError, term: 'Sun' },
         },
       ];
 
-      store.dispatch(actions.getSongs({onSuccess, onError, term: 'Sun'}));
+      store.dispatch(actions.getSongs({ onSuccess, onError, term: 'Sun' }));
       expect(store.getActions()).toEqual(expectedActions);
     });
   });

@@ -1,7 +1,7 @@
 import * as React from 'react';
 
-import {getIconComponent} from './map';
-import {Props} from './types';
+import { getIconComponent } from './map';
+import { Props } from './types';
 
 export const SVGIcon = ({
   type,

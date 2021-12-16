@@ -1,6 +1,7 @@
 import { createSelector } from 'reselect';
 import { RootState } from '../reducers';
 import { initialState, songKeyMap } from './constants';
+import { SongKeyType } from './types';
 
 export const getState = (state: RootState) => state.songs || initialState;
 
@@ -28,12 +29,18 @@ const getSortOrder = createSelector(getSortBy, sortBy => sortBy.order);
 export const getSortedSongs = createSelector(
   [getSongs, getSortType, getSortOrder],
   (songs, type, order) => {
-    const key = songKeyMap.get(type);
+    const key = songKeyMap.get(type) || '';
     const isAscending = order === 'ASC';
     const sortedSongs = key
-      ? [...songs].sort((a, b) =>
-          (isAscending ? a[key] > b[key] : b[key] > a[key]) ? 1 : -1,
-        )
+      ? [...songs].sort((a, b) => {
+          const init = a[key];
+          const final = b[key];
+          return init && final
+            ? (isAscending ? init > final : final > init)
+              ? 1
+              : -1
+            : 1;
+        })
       : songs;
 
     return sortedSongs;

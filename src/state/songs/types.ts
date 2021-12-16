@@ -63,6 +63,12 @@ export interface SortBy {
   order: string;
 }
 
+export type SongKeyType =
+  | 'trackTimeMillis'
+  | 'primaryGenreName'
+  | 'trackPrice'
+  | '';
+
 export interface SongsState {
   songs: Song[];
   sortBy: SortBy;

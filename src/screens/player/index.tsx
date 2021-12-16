@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import TrackPlayer, { Event, useTrackPlayerEvents, State, RepeatMode } from 'react-native-track-player';
+import TrackPlayer, { Event, Capability, useTrackPlayerEvents, State, RepeatMode } from 'react-native-track-player';
 import { getCurrentSong, getNextTrackId, getTrackPlayerSongs, getPrevTrackId } from '~/state/songs/selectors'
 import { Song as SongType } from '~/state/songs/types';
 import { Container, PlayButton, RowContainer, PlayIcon, PlayerContainer } from './styles';
@@ -67,12 +67,20 @@ export const Player = () => {
     const start = async () => {
         // Set up the player
         await TrackPlayer.setupPlayer();
+        // Set up Capabilities
+        await TrackPlayer.updateOptions({
+            // Media controls capabilities
+            capabilities: [Capability.Play, Capability.Pause],
+            // Capabilities that will show up when the notification is in the compact form on Android
+            compactCapabilities: [Capability.Play, Capability.Pause],
+        })
         // Add songs to player
         await TrackPlayer.add(songs);
         // Set current song in queue to current index
         await TrackPlayer.skip(currentIndex);
         // Enable Queue repeat mode
         await TrackPlayer.setRepeatMode(RepeatMode.Queue);
+
     };
 
     useEffect(() => { start(); return () => TrackPlayer.destroy(); }, [])

@@ -1,9 +1,8 @@
 import {combineReducers} from 'redux';
 
-import {counter} from './counter';
 import {songs} from './songs';
 
-export const combinedReducer = combineReducers({counter, songs});
+export const combinedReducer = combineReducers({songs});
 
 export type RootState = ReturnType<typeof combinedReducer>;
 

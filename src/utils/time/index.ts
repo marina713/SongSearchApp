@@ -1,13 +1,13 @@
 export function msToHMS(ms: number) {
-  // 1- Convert to seconds:
+  // Convert to seconds:
   let seconds = ms / 1000;
-  // 2- Extract hours:
+  // Extract hours:
   const numHours = Math.floor(seconds / 3600);
   const hours = numHours ? numHours.toString() + ':' : '';
   seconds = seconds % 3600; // seconds remaining after extracting hours
-  // 3- Extract minutes:
+  // Extract minutes:
   const minutes = Math.floor(seconds / 60).toString(); // 60 seconds in 1 minute
-  // 4- Keep only seconds not extracted to minutes:
+  // Keep only seconds not extracted to minutes:
   const secondsNum = Math.floor(seconds % 60).toString();
   const secondString = secondsNum.length === 1 ? '0' + secondsNum : secondsNum;
 

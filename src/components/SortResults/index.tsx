@@ -33,8 +33,8 @@ const SortItemComponent = ({ sortBy }: SortItemComponentProps) => {
       sortByState.type === '' || !isSelected
         ? { type: sortBy, order: 'DESC' }
         : sortByState.order === 'DESC'
-        ? { type: sortBy, order: 'ASC' }
-        : { type: '', order: '' };
+          ? { type: sortBy, order: 'ASC' }
+          : { type: '', order: '' };
     dispatch(setSortBy(nextValue));
   };
 

@@ -13,7 +13,9 @@ export function* getSongsSaga({
     const response = yield call(api.getSongs, { term });
     const result = yield call(() => response.json());
 
-    const songs = result.results.filter((result: Song) => !!result.trackId);
+    const songs = result.results?.filter(
+      (result: Song) => !!result.trackId && !!result.trackTimeMillis,
+    );
 
     if (songs && Array.isArray(songs)) {
       yield put(updateSongs(songs));
@@ -22,7 +24,6 @@ export function* getSongsSaga({
       throw new Error();
     }
   } catch (e) {
-    console.log(e);
     yield call(onError);
   }
 }

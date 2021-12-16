@@ -102,7 +102,7 @@ export const Player = () => {
   useEffect(() => {
     start();
     return () => TrackPlayer.destroy();
-  });
+  }, []);
 
   useTrackPlayerEvents(events, event => {
     if (event.type === Event.PlaybackError) {

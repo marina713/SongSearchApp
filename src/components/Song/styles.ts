@@ -5,6 +5,7 @@ export const Container = styled.View<{ theme: ThemeColors }>`
   margin: 10px 5px;
   padding: 5px 20px;
   align-items: center;
+  flex: 1;
 `;
 
 export const TrackName = styled.Text<{ theme: ThemeColors }>`

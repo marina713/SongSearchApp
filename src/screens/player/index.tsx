@@ -102,6 +102,7 @@ export const Player = () => {
   useEffect(() => {
     start();
     return () => TrackPlayer.destroy();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useTrackPlayerEvents(events, event => {

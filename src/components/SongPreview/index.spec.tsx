@@ -13,12 +13,12 @@ jest.mock('./styles', () => ({
   ExtraInfoText: 'ExtraInfoText',
   FlexRow: 'FlexRow',
   FlexCol: 'FlexCol',
-  SubTitle: 'SubTitle'
+  SubTitle: 'SubTitle',
 }));
 
 const initialProps = {
   song: MOCK_SONGS[0],
-  onSongPress: () => { }
+  onSongPress: () => {},
 };
 
 const testComponent = (props?: Props) => {

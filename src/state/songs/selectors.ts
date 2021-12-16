@@ -1,7 +1,6 @@
 import { createSelector } from 'reselect';
 import { RootState } from '../reducers';
 import { initialState, songKeyMap } from './constants';
-import { SongKeyType } from './types';
 
 export const getState = (state: RootState) => state.songs || initialState;
 

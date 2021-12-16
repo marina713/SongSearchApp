@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { Container, TextInput, FlatList, Title, Subtitle, NotFoundContainer, Lottie } from './styles';
 import { getSongs as getSongsAction, setPlayingTrackId } from '~/state/songs/actions';
@@ -75,7 +76,7 @@ export const Home = ({ navigation }: any) => {
   const onChange = (text: string) => { setText(text); setIsTyping(true) };
 
   return (
-    <>
+    <SafeAreaView>
       <HomeHeaderComponent onSubmitEditing={onSubmitEditing} onChange={onChange} />
       {isLoading ?
         <Lottie
@@ -88,6 +89,6 @@ export const Home = ({ navigation }: any) => {
           isTyping={isTyping}
           text={text} />
       }
-    </>
+    </SafeAreaView>
   );
 };

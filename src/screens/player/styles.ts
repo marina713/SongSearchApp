@@ -2,9 +2,15 @@ import styled from 'styled-components/native';
 import {ThemeColors} from '~/constants/colors';
 
 export const Container = styled.View`
+  flex: 1;
+  align-items: flex-end;
+`;
+
+export const PlayerContainer = styled.View`
   align-items: center;
   flex: 1;
   justify-content: center;
+  padding-bottom: 80px;
 `;
 
 export const RowContainer = styled.View<{theme: ThemeColors}>`

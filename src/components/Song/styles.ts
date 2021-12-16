@@ -27,13 +27,6 @@ export const Title = styled.Text<{theme: ThemeColors}>`
   color: ${({theme}) => theme.subtitle};
 `;
 
-export const FlexRow = styled.View`
-  margin: 10px 0;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
-  flex: 1;
-`;
 export const FlexRowContainer = styled.View`
   flex-direction: row;
   flex-wrap: wrap;

@@ -9,14 +9,14 @@ export const getSongs = createSelector(
   state => state.songs || initialState.songs,
 );
 
-const getSongsLength = createSelector(getSongs, songs => songs.length);
+export const getSongsLength = createSelector(getSongs, songs => songs.length);
 
 export const getSortBy = createSelector(
   getState,
   state => state.sortBy || initialState.sortBy,
 );
 
-const getPlayingTrackId = createSelector(
+export const getPlayingTrackId = createSelector(
   getState,
   state => state.playingTrackId || initialState.playingTrackId,
 );

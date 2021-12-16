@@ -1,14 +1,12 @@
 import * as React from 'react';
 import { Song as SongType } from '~/state/songs/types';
 import { msToHMS, formatDate } from '~/utils/time'
-import { ShareButton } from '../Share';
 
 import {
     Container,
     TrackName,
     Title,
     AlbumCover,
-    FlexRow,
     ExtraInfoContainer,
     ExtraInfoText,
     FlexRowContainer
@@ -32,13 +30,10 @@ export const Song = React.memo(({ song }: Props) => {
             <Title>{song.artistName}</Title>
             <AlbumCover source={{ uri: song.artworkUrl100 }} />
             <FlexRowContainer>
-                <ShareButton song={song} />
-                <FlexRow>
-                    {extraInfo.map(item => (item ?
-                        <ExtraInfoContainer key={item}>
-                            <ExtraInfoText>{item}</ExtraInfoText>
-                        </ExtraInfoContainer> : null))}
-                </FlexRow>
+                {extraInfo.map(item => (item ?
+                    <ExtraInfoContainer key={item}>
+                        <ExtraInfoText>{item}</ExtraInfoText>
+                    </ExtraInfoContainer> : null))}
             </FlexRowContainer>
         </Container>
     )

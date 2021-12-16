@@ -3,9 +3,10 @@ import { useSelector, useDispatch } from 'react-redux';
 import TrackPlayer, { Event, useTrackPlayerEvents, State, RepeatMode } from 'react-native-track-player';
 import { getCurrentSong, getNextTrackId, getTrackPlayerSongs, getPrevTrackId } from '~/state/songs/selectors'
 import { Song as SongType } from '~/state/songs/types';
-import { Container, PlayButton, RowContainer, PlayIcon } from './styles';
+import { Container, PlayButton, RowContainer, PlayIcon, PlayerContainer } from './styles';
 import { Song } from '~/components/Song'
 import { setPlayingTrackId } from '~/state/songs/actions';
+import { ShareButton } from '~/components/Share'
 
 type Props = {
     song: SongType;
@@ -38,18 +39,21 @@ export const PlayerComponent = React.memo(({ song, isPlaying }: Props) => {
 
     return (
         <Container>
-            <Song song={song} />
-            <RowContainer>
-                <PlayButton onPress={onPressBack}>
-                    <PlayIcon smaller source={require('~/assets/images/back.png')} />
-                </PlayButton>
-                <PlayButton onPress={onPressPlayPause}>
-                    <PlayIcon source={playPauseSource} />
-                </PlayButton>
-                <PlayButton onPress={onPressNext}>
-                    <PlayIcon smaller source={require('~/assets/images/next.png')} />
-                </PlayButton>
-            </RowContainer>
+            <ShareButton song={song} />
+            <PlayerContainer>
+                <Song song={song} />
+                <RowContainer>
+                    <PlayButton onPress={onPressBack}>
+                        <PlayIcon smaller source={require('~/assets/images/back.png')} />
+                    </PlayButton>
+                    <PlayButton onPress={onPressPlayPause}>
+                        <PlayIcon source={playPauseSource} />
+                    </PlayButton>
+                    <PlayButton onPress={onPressNext}>
+                        <PlayIcon smaller source={require('~/assets/images/next.png')} />
+                    </PlayButton>
+                </RowContainer>
+            </PlayerContainer>
         </Container>
     )
 });

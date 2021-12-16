@@ -4,6 +4,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { useColorScheme } from 'react-native';
 import { ThemeProvider } from 'styled-components/native';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { store } from '~/state';
 
 import { Home } from '~/screens/home';
@@ -20,10 +21,12 @@ const App = () => {
     <NavigationContainer theme={isDarkMode ? darkTheme : lightTheme}>
       <Provider store={store}>
         <ThemeProvider theme={isDarkMode ? darkTheme.colors : lightTheme.colors}>
-          <Stack.Navigator>
-            <Stack.Screen name="Home" component={Home} options={{ headerShown: false }} />
-            <Stack.Screen name="Player" component={Player} />
-          </Stack.Navigator>
+          <SafeAreaProvider>
+            <Stack.Navigator>
+              <Stack.Screen name="Home" component={Home} options={{ headerShown: false }} />
+              <Stack.Screen name="Player" component={Player} />
+            </Stack.Navigator>
+          </SafeAreaProvider>
         </ThemeProvider>
       </Provider>
     </NavigationContainer>

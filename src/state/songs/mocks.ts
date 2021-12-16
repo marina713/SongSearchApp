@@ -1,5 +1,5 @@
 export const MOCK_SORT_BY = {type: 'Duration', order: 'ASC'};
-export const MOCK_TRACK_ID = 12345;
+export const MOCK_TRACK_ID = 1444896574;
 export const MOCK_SONGS = [
   {
     wrapperType: 'track',
@@ -158,3 +158,9 @@ export const MOCK_SONGS = [
     isStreamable: true,
   },
 ];
+
+export const mockState = {
+  songs: MOCK_SONGS,
+  sortBy: MOCK_SORT_BY,
+  playingTrackId: MOCK_TRACK_ID,
+};

@@ -3,7 +3,7 @@ import {ThemeColors} from '~/constants/colors';
 import LottieView from 'lottie-react-native';
 
 export const Container = styled.View`
-  padding: 50px 15px 10px;
+  padding: 30px 15px 10px;
 `;
 export const NotFoundContainer = styled.View`
   align-items: center;

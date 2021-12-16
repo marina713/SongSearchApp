@@ -35,7 +35,7 @@ describe('getSongsSaga', () => {
     const requestSongs = jest.spyOn(api, 'getSongs').mockImplementation(() =>
       Promise.resolve({
         json: () => ({
-          contents: {songs: [{term: 'nirvana'}]},
+          results: [],
         }),
       }),
     );
@@ -45,13 +45,17 @@ describe('getSongsSaga', () => {
         dispatch: (action: any) => dispatched.push(action),
       },
       getSongsSaga,
-      getMockAction({onSuccess: mockOnSuccess, onError: mockOnError}),
+      getMockAction({
+        onSuccess: mockOnSuccess,
+        onError: mockOnError,
+        term: 'Sun',
+      }),
     );
 
     expect(requestSongs).toHaveBeenCalledTimes(1);
     expect(mockOnSuccess).toHaveBeenCalledTimes(1);
     expect(mockOnError).toHaveBeenCalledTimes(0);
-    expect(dispatched).toEqual([updateSongs('nirvana')]);
+    expect(dispatched).toEqual([updateSongs([])]);
     requestSongs.mockClear();
   });
 

@@ -7,3 +7,9 @@ export const Container = styled.View<{ theme: ThemeColors }>`
   border-radius: 25px;
   margin: 15px 20px 0 0;
 `;
+
+export const Image = styled.Image`
+  width: 40px;
+  height: 40px;
+  margin: 5px;
+`;

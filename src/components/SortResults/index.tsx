@@ -23,18 +23,17 @@ const SortItemComponent = ({ sortBy }: SortItemComponentProps) => {
   const sortByState = useSelector(getSortBy);
 
   const isSelected = sortByState.type === sortBy;
-  const source =
-    sortByState.order === 'DESC'
-      ? require('~/assets/images/sort-descending.png')
-      : require('~/assets/images/sort-ascending.png');
+  const isDescending = sortByState.order === 'DESC';
+  const isAscending = sortByState.order === 'ASC';
+  const shouldOrderDesc = sortByState.type === '' || !isSelected;
+  const source = isDescending
+    ? require('~/assets/images/sort-descending.png')
+    : require('~/assets/images/sort-ascending.png');
 
   const onPress = () => {
-    const nextValue =
-      sortByState.type === '' || !isSelected
-        ? { type: sortBy, order: 'DESC' }
-        : sortByState.order === 'DESC'
-        ? { type: sortBy, order: 'ASC' }
-        : { type: '', order: '' };
+    const type = isAscending ? '' : sortBy;
+    const order = shouldOrderDesc ? 'DESC' : isDescending ? 'ASC' : '';
+    const nextValue = { type, order };
     dispatch(setSortBy(nextValue));
   };
 

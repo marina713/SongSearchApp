@@ -15,6 +15,7 @@ export const TrackName = styled.Text<{ theme: ThemeColors }>`
   font-weight: 600;
   text-align: center;
 `;
+
 export const AlbumCover = styled.Image`
   aspect-ratio: 1;
   width: 200px;

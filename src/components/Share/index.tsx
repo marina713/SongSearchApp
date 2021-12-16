@@ -1,11 +1,11 @@
 import React from 'react';
-import { Share, Image, TouchableOpacity } from 'react-native';
+import { Share, TouchableOpacity } from 'react-native';
 import { Song } from '~/state/songs/types';
-import { Container } from './styles';
+import { Container, Image } from './styles';
 
 type Props = { song: Song };
 
-export const ShareButton = ({ song }: Props) => {
+export const ShareButton = React.memo(({ song }: Props) => {
   const onShare = async () => {
     try {
       const result = await Share.share({
@@ -25,11 +25,8 @@ export const ShareButton = ({ song }: Props) => {
   return (
     <Container>
       <TouchableOpacity onPress={onShare}>
-        <Image
-          source={require('~/assets/images/share.png')}
-          style={{ width: 40, height: 40, margin: 5 }}
-        />
+        <Image source={require('~/assets/images/share.png')} />
       </TouchableOpacity>
     </Container>
   );
-};
+});

@@ -2,75 +2,15 @@ import * as React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-import {
-  Container,
-  TextInput,
-  FlatList,
-  Title,
-  Subtitle,
-  NotFoundContainer,
-  Lottie,
-} from './styles';
+import { Lottie } from './styles';
 import {
   getSongs as getSongsAction,
   setPlayingTrackId,
 } from '~/state/songs/actions';
 import { getSortedSongs } from '~/state/songs/selectors';
-import { SongPreview } from '~/components/SongPreview';
-import { SortResults } from '~/components/SortResults';
 import { Song } from '~/state/songs/types';
-
-type HomeHeaderProps = {
-  onSubmitEditing: (text: string) => void;
-  onChange: (text: string) => void;
-};
-type HomeContentProps = {
-  songs: Song[];
-  onSongPress: (trackId: number) => void;
-  isTyping: boolean;
-  text: string;
-};
-
-export const HomeHeaderComponent = React.memo(
-  ({ onSubmitEditing, onChange }: HomeHeaderProps) => {
-    return (
-      <Container>
-        <Title>Music search</Title>
-        <TextInput
-          onSubmitEditing={e => onSubmitEditing(e.nativeEvent.text)}
-          selectTextOnFocus
-          onChange={e => onChange(e.nativeEvent.text)}
-          clearButtonMode="while-editing"
-          returnKeyType="search"
-        />
-      </Container>
-    );
-  },
-);
-
-export const HomeContentComponent = React.memo(
-  ({ songs, onSongPress, isTyping, text }: HomeContentProps) =>
-    songs.length > 0 ? (
-      <>
-        <SortResults />
-        <FlatList
-          data={songs}
-          renderItem={({ item }: { item: any }) => (
-            <SongPreview
-              song={item}
-              onSongPress={() => onSongPress(item.trackId)}
-            />
-          )}
-          keyExtractor={(item: any, index) => `${item.trackId}-${index}`}
-        />
-      </>
-    ) : isTyping || !text ? null : (
-      <NotFoundContainer>
-        <Lottie source={require('~/assets/lotties/not-found.json')} autoPlay />
-        <Subtitle> No music found, try again!</Subtitle>
-      </NotFoundContainer>
-    ),
-);
+import { HomeHeaderComponent } from './components/header';
+import { HomeContentComponent } from './components/content';
 
 export const Home = ({ navigation }: any) => {
   const dispatch = useDispatch();

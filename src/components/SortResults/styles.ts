@@ -45,6 +45,7 @@ export const SortItemText = styled.Text<{
       ? `color: ${props.theme.background};`
       : `color: ${props.theme.text};`}
 `;
+
 export const SortIcon = styled.Image`
   margin-left: 7px;
   margin-right: 7px;

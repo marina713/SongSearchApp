@@ -1,0 +1,81 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Song /> renders correctly with custom Song 1`] = `
+<Container>
+  <TrackName>
+    Come As You Are
+  </TrackName>
+  <Title>
+    Nirvana
+  </Title>
+  <AlbumCover
+    source={
+      Object {
+        "uri": "https://is3-ssl.mzstatic.com/image/thumb/Music125/v4/8d/58/a9/8d58a928-0663-71f7-4e5c-d2bd54a124fb/source/100x100bb.jpg",
+      }
+    }
+  />
+  <FlexRowContainer>
+    <ExtraInfoContainer>
+      <ExtraInfoText>
+        Alternative
+      </ExtraInfoText>
+    </ExtraInfoContainer>
+    <ExtraInfoContainer>
+      <ExtraInfoText>
+        Length 3:39
+      </ExtraInfoText>
+    </ExtraInfoContainer>
+    <ExtraInfoContainer>
+      <ExtraInfoText>
+        Released 24/9/1991
+      </ExtraInfoText>
+    </ExtraInfoContainer>
+    <ExtraInfoContainer>
+      <ExtraInfoText>
+        $1.29
+      </ExtraInfoText>
+    </ExtraInfoContainer>
+  </FlexRowContainer>
+</Container>
+`;
+
+exports[`<Song /> renders correctly with default props 1`] = `
+<Container>
+  <TrackName>
+    Nirvana
+  </TrackName>
+  <Title>
+    Sam Smith
+  </Title>
+  <AlbumCover
+    source={
+      Object {
+        "uri": "https://is4-ssl.mzstatic.com/image/thumb/Music114/v4/e4/f9/59/e4f959ff-e758-ff29-4b26-39ae222489c8/source/100x100bb.jpg",
+      }
+    }
+  />
+  <FlexRowContainer>
+    <ExtraInfoContainer>
+      <ExtraInfoText>
+        Pop
+      </ExtraInfoText>
+    </ExtraInfoContainer>
+    <ExtraInfoContainer>
+      <ExtraInfoText>
+        Length 3:17
+      </ExtraInfoText>
+    </ExtraInfoContainer>
+    <ExtraInfoContainer>
+      <ExtraInfoText>
+        Released 1/1/2013
+      </ExtraInfoText>
+    </ExtraInfoContainer>
+    <ExtraInfoContainer>
+      <ExtraInfoText>
+        $0.69
+      </ExtraInfoText>
+    </ExtraInfoContainer>
+  </FlexRowContainer>
+</Container>
+`;

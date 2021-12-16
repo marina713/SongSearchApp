@@ -1,5 +1,6 @@
 import styled from 'styled-components/native';
 import {ThemeColors} from '~/constants/colors';
+import LottieView from 'lottie-react-native';
 
 export const Container = styled.View`
   padding: 50px 15px 10px;
@@ -32,4 +33,9 @@ export const TextInput = styled.TextInput<{theme: ThemeColors}>`
   padding: 5px 10px;
   font-size: 18px;
   color: ${({theme}) => theme.title};
+`;
+
+export const Lottie = styled(LottieView)`
+  width: 250px;
+  align-self: center;
 `;

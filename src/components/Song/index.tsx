@@ -24,7 +24,7 @@ export const Song = React.memo(({ song }: Props) => {
     const price = song.currency === 'USD' ? `$${song.trackPrice}` : `${song.trackPrice}${song.currency}`;
     const genre = song.primaryGenreName || '';
 
-    const extraInfo = [genre, formattedReleaseDate, formattedLength, price];
+    const extraInfo = [genre, formattedLength, formattedReleaseDate, price];
 
     return (
         <Container>
